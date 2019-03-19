@@ -162,10 +162,14 @@ class Team:
         teams.sort(reverse=True)
         favorite_probability = matchup_probability[teams[0].seed,
                                                    teams[1].seed]
-        if favorite_probability is None or favorite_probability == 0.0:
+        if favorite_probability is None:
             favorite_probability = min(0.996,
-                                       ((teams[1].seed - teams[0].seed)
-                                        * .065 + rd / 15))
+                                       ((((teams[1].seed - teams[0].seed)
+                                          * .065 + rd / 15)) + 1) / 2)
+        elif favorite_probability == 0.0:
+            favorite_probability = 0.04
+        elif favorite_probability >= 1.0:
+            favorite_probability = 0.96
         simulation = next(randomgenerator) / 1000
         if simulation < favorite_probability:
             return teams[0]
