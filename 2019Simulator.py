@@ -289,7 +289,7 @@ south = [
 divisions = []
 divison_winners = {}
 number_entry = input("Random Number Table (63 numbers):\n")
-number_entry = number_entry.split('\t')
+number_entry = number_entry.split()
 randomgenerator = randomnumbers(number_entry)
 
 for name, team_list in [('EAST', east), ('WEST', west), ('MIDWEST', midwest),
