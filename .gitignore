@@ -1,0 +1,4 @@
+RNT[0-9]*.txt
+
+*.pyc
+.vscode/*
