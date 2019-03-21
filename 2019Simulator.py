@@ -231,12 +231,12 @@ east = [
     (8, 'VCU'),
     (9, 'UCF'),
     (10, 'Minnesota'),
-    (11, 'Temple/Belmont'),
+    (11, 'Belmont'),
     (12, 'Liberty'),
     (13, 'Saint Louis'),
     (14, 'Yale'),
     (15, 'Bradley'),
-    (16, 'North Carolina Central/North Dakota State'),
+    (16, 'North Dakota State'),
 ]
 west = [
     (1, 'Gonzaga'),
@@ -249,12 +249,12 @@ west = [
     (8, 'Syracuse'),
     (9, 'Baylor'),
     (10, 'Florida'),
-    (11, 'Arizona State/St. John\'s'),
+    (11, 'Arizona State'),
     (12, 'Murray State'),
     (13, 'Vermont'),
     (14, 'Northern Kentucky'),
     (15, 'Montana'),
-    (16, 'Fairleigh Dickinson/Prairie View A&M'),
+    (16, 'Fairleigh Dickinson'),
 ]
 midwest = [
     (1, 'North Carolina'),
