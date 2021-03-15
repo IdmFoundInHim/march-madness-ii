@@ -15,7 +15,7 @@ def get_backup_probability(seed: int, opponent: int) -> float:
     (< 10 games) points. Perform a linear
     regression on the wins ratio vs. difference in seeds data set.
     """
-    discrepancy = seed - opponent
+    discrepancy = opponent - seed
     team_is_favorite = discrepancy > 0
     p_favorite = 0.0330013688 * abs(discrepancy) + 0.5056507256
     return p_favorite if team_is_favorite else 1 - p_favorite
