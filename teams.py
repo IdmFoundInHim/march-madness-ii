@@ -3,7 +3,7 @@ import json
 from simulator import Division, Team
 
 
-def get_teams_file(filename: str):
+def get_teams_file(filename: str) -> list[Division]:
     with open(filename) as teams_json:
         schedule = json.load(teams_json)
     # {"DIVISION": {"SEED": "TEAM", ...}, ...}

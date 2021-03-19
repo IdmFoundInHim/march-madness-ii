@@ -1,10 +1,17 @@
 from __future__ import annotations
-from typing import Iterable, SupportsInt
+import sys
+from typing import Iterable, Sequence, SupportsInt, TypeVar
 
 from probability import get_backup_probability, get_probabilities_file
 
+gender = 'm'
+if '-w' in sys.argv[1]:
+    gender = 'w'
+elif '-m' in sys.argv:
+    gender = 'm'
+
 GAMES_REQUIRED = 7
-PROBABILITIES_FILE = 'probabilities_2021.json'
+PROBABILITIES_FILE = f'probabilities_2021{gender}.json'
 
 
 class Team:
@@ -72,7 +79,9 @@ class Division:
         return advances
 
 
-def better_grouper_two(inputs):
+Grouped = TypeVar('Grouped')
+
+def better_grouper_two(inputs: Iterable[Grouped]) -> list[tuple[Grouped]]:
     # Modified from https://realpython.com/python-itertools/
     iters = [iter(inputs)] * 2
     return list(zip(*iters))
