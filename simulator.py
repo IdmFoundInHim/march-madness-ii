@@ -5,13 +5,13 @@ from typing import Iterable, Sequence, SupportsInt, TypeVar
 from probability import get_backup_probability, get_probabilities_file
 
 gender = 'm'
-if '-w' in sys.argv[1]:
+if '-w' in sys.argv:
     gender = 'w'
 elif '-m' in sys.argv:
     gender = 'm'
 
 GAMES_REQUIRED = 7
-PROBABILITIES_FILE = f'probabilities_2021{gender}.json'
+PROBABILITIES_FILE = f'probabilities_2022{gender}.json'
 
 
 class Team:

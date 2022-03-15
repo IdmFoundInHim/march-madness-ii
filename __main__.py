@@ -5,14 +5,14 @@ from teams import get_teams_file
 from simulator import Team, better_grouper_two
 
 gender = 'm'
-if '-w' in sys.argv[1]:
+if '-w' in sys.argv:
     gender = 'w'
 elif '-m' in sys.argv:
     gender = 'm'
 
-TEAMS_FILENAME = f'teams_2021{gender}.json'
+TEAMS_FILENAME = f'teams_2022{gender}.json'
 DIVISION_MATCHUPS_MEN = [['East', 'West'], ['Midwest', 'South']]
-DIVISION_MATCHUPS_WOMEN = [['Alamo', 'HemisFair'], ['Mercado', 'RiverWalk']]
+DIVISION_MATCHUPS_WOMEN = [['Greensboro', 'Wichita'], ['Spokane', 'Bridgeport']]
 
 def randomnumbers(provided_numbers: Iterable[SupportsInt]):
     # Recommended: Get your random numbers from
