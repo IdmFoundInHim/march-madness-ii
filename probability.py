@@ -20,7 +20,7 @@ def get_backup_probability(seed: int, opponent: int) -> float:
     """
     discrepancy = opponent - seed
     team_is_favorite = discrepancy > 0
-    p_favorite = 0.0330013688 * abs(discrepancy) + 0.5056507256
+    p_favorite = 0.0322379162 * abs(discrepancy) + 0.5033561178
     return p_favorite if team_is_favorite else 1 - p_favorite
 
 

@@ -11,8 +11,6 @@ elif '-m' in sys.argv:
     gender = 'm'
 
 TEAMS_FILENAME = f'teams_2022{gender}.json'
-DIVISION_MATCHUPS_MEN = [['East', 'West'], ['Midwest', 'South']]
-DIVISION_MATCHUPS_WOMEN = [['Greensboro', 'Wichita'], ['Spokane', 'Bridgeport']]
 
 def randomnumbers(provided_numbers: Iterable[SupportsInt]):
     # Recommended: Get your random numbers from
