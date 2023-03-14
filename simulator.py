@@ -1,6 +1,8 @@
 from __future__ import annotations
 import sys
 from typing import Iterable, Sequence, SupportsInt, TypeVar
+from datetime import date
+from os.path import isfile
 
 from probability import get_backup_probability, get_probabilities_file
 
@@ -11,7 +13,12 @@ elif '-m' in sys.argv:
     gender = 'm'
 
 GAMES_REQUIRED = 7
-PROBABILITIES_FILE = f'probabilities_2022{gender}.json'
+year = date.today().year
+while (
+        (not isfile(probabilities_file := f'probabilities_{year}{gender}.json'))
+        and year > 1985): # First year of tournament
+    year -= 1
+PROBABILITIES_FILE = probabilities_file
 
 
 class Team:

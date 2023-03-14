@@ -4,9 +4,13 @@ from simulator import Division, Team
 
 
 def get_teams_file(filename: str) -> list[Division]:
-    with open(filename) as teams_json:
-        schedule = json.load(teams_json)
+    try:
+        teams_json = open(filename)
+    except FileNotFoundError:
+        teams_json = open('teams_fallback.json')
     # {"DIVISION": {"SEED": "TEAM", ...}, ...}
+    schedule = json.load(teams_json)
+    teams_json.close()
     divisions = []
     for division in schedule:
         divisions.append(

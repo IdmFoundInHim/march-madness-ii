@@ -1,5 +1,7 @@
 import sys
 from typing import Iterable, SupportsInt
+from datetime import date
+from itertools import repeat
 
 from teams import get_teams_file
 from simulator import Team, better_grouper_two
@@ -10,7 +12,7 @@ if '-w' in sys.argv:
 elif '-m' in sys.argv:
     gender = 'm'
 
-TEAMS_FILENAME = f'teams_2022{gender}.json'
+TEAMS_FILENAME = f'teams_{date.today().year}{gender}.json'
 
 def randomnumbers(provided_numbers: Iterable[SupportsInt]):
     # Recommended: Get your random numbers from
@@ -19,9 +21,12 @@ def randomnumbers(provided_numbers: Iterable[SupportsInt]):
         yield int(x)
 
 
-number_entry = input("Random Number Table (63 numbers):\n")
-number_entry = number_entry.split()
-random_generator = randomnumbers(number_entry)
+if '--test' in sys.argv:
+    random_generator = repeat(0)
+else:
+    number_entry = input("Random Number Table (63 numbers):\n")
+    number_entry = number_entry.split()
+    random_generator = randomnumbers(number_entry)
 
 divisions = get_teams_file(TEAMS_FILENAME)
 division_matchups = better_grouper_two(d.name for d in divisions)
