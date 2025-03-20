@@ -3,7 +3,7 @@ from typing import Mapping, Sequence
 
 
 def get_probabilities_file(filename: str) -> Mapping[int, Mapping[int, Sequence[int]]]:
-    """ Gets probabilities from JSON file """
+    """Gets probabilities from JSON file"""
     with open(filename) as probabilities_json:
         return json.load(
             probabilities_json, object_hook=lambda d: {int(k): d[k] for k in d}
@@ -25,7 +25,7 @@ def get_backup_probability(seed: int, opponent: int) -> float:
 
 
 def _backup_probability_get_regression_set(
-    main_probabilities: Mapping[int, Mapping[int, Sequence[int]]]
+    main_probabilities: Mapping[int, Mapping[int, Sequence[int]]],
 ) -> Mapping[int, Sequence[int]]:
     """Gets win-to-games ratio for each seed discrepancy
 

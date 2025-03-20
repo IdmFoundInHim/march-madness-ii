@@ -7,7 +7,7 @@ def get_teams_file(filename: str) -> list[Division]:
     try:
         teams_json = open(filename)
     except FileNotFoundError:
-        teams_json = open('teams_fallback.json')
+        teams_json = open("teams_fallback.json")
     # {"DIVISION": {"SEED": "TEAM", ...}, ...}
     schedule = json.load(teams_json)
     teams_json.close()

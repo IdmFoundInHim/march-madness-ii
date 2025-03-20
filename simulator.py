@@ -6,17 +6,17 @@ from os.path import isfile
 
 from probability import get_backup_probability, get_probabilities_file
 
-gender = 'm'
-if '-w' in sys.argv:
-    gender = 'w'
-elif '-m' in sys.argv:
-    gender = 'm'
+gender = "m"
+if "-w" in sys.argv:
+    gender = "w"
+elif "-m" in sys.argv:
+    gender = "m"
 
 GAMES_REQUIRED = 7
 year = date.today().year
 while (
-        (not isfile(probabilities_file := f'probabilities_{year}{gender}.json'))
-        and year > 1985): # First year of tournament
+    not isfile(probabilities_file := f"data/probabilities_{year}{gender}.json")
+) and year > 1985:  # First year of tournament
     year -= 1
 PROBABILITIES_FILE = probabilities_file
 
@@ -65,7 +65,7 @@ class Division:
         next_round = list(better_grouper_two(bracket))
         matches = 0
         for rnd in range(4):
-            print("\n" + self.name + str(64 // 2 ** rnd))
+            print("\n" + self.name + str(64 // 2**rnd))
             this_round = next_round
             next_round = []
             for match in this_round:
@@ -77,7 +77,7 @@ class Division:
                 )
                 print(advances.name, end="")
                 next_round.append(advances.seed)
-                if matches != 8 / 2 ** rnd:
+                if matches != 8 / 2**rnd:
                     print(", ", end="")
                 else:
                     matches = 0
@@ -86,7 +86,8 @@ class Division:
         return advances
 
 
-Grouped = TypeVar('Grouped')
+Grouped = TypeVar("Grouped")
+
 
 def better_grouper_two(inputs: Iterable[Grouped]) -> list[tuple[Grouped]]:
     # Modified from https://realpython.com/python-itertools/
