@@ -1,8 +1,9 @@
 from __future__ import annotations
+
 import sys
-from typing import Iterable, Sequence, SupportsInt, TypeVar
 from datetime import date
 from os.path import isfile
+from typing import Iterable, SupportsInt
 
 from probability import get_backup_probability, get_probabilities_file
 
@@ -59,37 +60,23 @@ class Team:
 class Division:
     def __init__(self, teams: Iterable[Team], name):
         self.teams, self.name = {team.seed: team for team in teams}, name
+        self.next_round = [1, 16, 8, 9, 5, 12, 4, 13, 6, 11, 3, 14, 7, 10, 2, 15]
 
-    def play_through(self, random_number_generator: Iterable[int]):
-        bracket = [1, 16, 8, 9, 5, 12, 4, 13, 6, 11, 3, 14, 7, 10, 2, 15]
-        next_round = list(better_grouper_two(bracket))
-        matches = 0
-        for rnd in range(4):
-            print("\n" + self.name + str(64 // 2**rnd))
-            this_round = next_round
-            next_round = []
-            for match in this_round:
-                matches += 1
-                advances = Team.play_game(
-                    self.teams[match[0]],
-                    self.teams[match[1]],
-                    next(random_number_generator),
-                )
-                print(advances.name, end="")
-                next_round.append(advances.seed)
-                if matches != 8 / 2**rnd:
-                    print(", ", end="")
-                else:
-                    matches = 0
-            next_round = list(better_grouper_two(next_round))
-        self.winner = advances
-        return advances
+    def play_round(self, random_number_generator: Iterable[int]):
+        results = []
+        teams = len(self.next_round)
+        print("\n" + self.name + str(teams * 4))
+        for i in range(0, teams, 2):
+            if i:
+                print(", ", end="")
+            advances = Team.play_game(
+                self.teams[self.next_round[i]],
+                self.teams[self.next_round[i + 1]],
+                next(random_number_generator),
+            )
+            print(advances.name, end="")
+            results.append(advances.seed)
+        self.next_round = results
 
-
-Grouped = TypeVar("Grouped")
-
-
-def better_grouper_two(inputs: Iterable[Grouped]) -> list[tuple[Grouped]]:
-    # Modified from https://realpython.com/python-itertools/
-    iters = [iter(inputs)] * 2
-    return list(zip(*iters))
+    def winner(self):
+        return self.teams[self.next_round[0]]
